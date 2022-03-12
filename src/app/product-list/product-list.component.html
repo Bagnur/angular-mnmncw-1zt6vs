@@ -4,15 +4,29 @@
   <h3>
     <a
       [title]="product.name + ' details'"
-      [routerLink]="['/products', product.id]">
+      [routerLink]="['/products', product.id]"
+    >
       {{ product.name }}
     </a>
+  </h3>
+  <h3>
+    <a [routerLink]="['/product-item', product.id]"> info </a>
   </h3>
 
   <p *ngIf="product.description">Description: {{ product.description }}</p>
   <!-- <img [src]="product.photo"> -->
 
-  <button type="button" (click)="share()">Share</button>
+  <share-buttons
+    theme="modern-dark"
+    [include]="['telegram']"
+    [showIcon]="true"
+    [showText]="true"
+    [url]="product.link"
+    [description]="product.name"
+    twitterAccount="rodrigokamada"
+    class="pt-5"
+  >
+  </share-buttons>
 
   <app-product-alerts [product]="product" (notify)="onNotify()">
   </app-product-alerts>
